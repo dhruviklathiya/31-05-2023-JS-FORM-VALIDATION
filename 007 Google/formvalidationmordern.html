@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="mordern.css">
+</head>
+<body>
+    <div class="container">
+    <div class="brand-logo"></div>
+    <div class="brand-title">Form Validation</div>
+    <div class="inputs">
+        <form>
+            <label for="">Name:</label>
+            <input type="text" id="name_input" placeholder="Enter name here" required/>
+            <span id="span_1"></span>
+            <label for="">Mobile number:</label>
+            <input type="tel" id="mobile_num" placeholder="Provide number input" required/>
+            <span id="span_2"></span>
+            <button type="button" onclick="check()">VALIDATE</button>
+        </form>
+    </div>
+  </div>
+  <script type="text/javascript">
+     function check() {   
+            // Validating name
+            let val_name = document.getElementById('name_input').value;
+            // console.log(typeof(val_name)); // Confirming type of input value
+            console.log(typeof(val_name));
+            if(isNaN(val_name))
+            {   
+                let val_name_length = val_name.length;
+                if(val_name_length>3 && val_name_length<8)
+                {
+                    document.getElementById('span_1').style.color = "Green";
+                    document.getElementById('span_1').innerHTML = "Entered Name is valid.";
+                }
+            else{
+                document.getElementById('span_1').style.color = "Red";
+                document.getElementById('span_1').innerHTML = "Entered name is not valid.";
+            }
+            }
+            else{
+                    alert("Enter valid name input (not number)");
+            }
+
+            // Verifying Mobile Nymber
+             let val_mob_no = document.getElementById('mobile_num').value;
+            // First case: Character as user input
+            if (isNaN(val_mob_no)) {
+                alert("Enter valid number input (not characters)");
+                document.getElementById('span_2').style.color = "Red";
+                document.getElementById('span_2').innerHTML = "You have entered invalid number | Please enter valid input";
+            }
+            else {
+                let len_mob_no = 0;
+                // Logic for counting digits in input 
+                while (val_mob_no > 1) {
+                    val_mob_no /= 10;
+                    len_mob_no++;
+                }
+                if (len_mob_no != 10) {
+                    document.getElementById('span_2').style.color = "Red";
+                    document.getElementById('span_2').innerHTML = "You have entered invalid number | Please enter valid input";
+                    document.getElementById('span_2').innerHTML = "Mobile number must contain 10 numbers.";
+                }
+                else {
+                    document.getElementById('span_2').style.color = "Green";
+                    document.getElementById('span_2').innerHTML = "Entered mobile number is valid.";
+                }
+            } 
+        }
+  </script>
+</body>
+</html>
